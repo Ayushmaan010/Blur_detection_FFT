@@ -17,7 +17,7 @@ def compute_freq_metrics(path, d=30):
 
     total_energy = magnitude.sum()
 
-    # Build high-frequency mask
+    # Building high-frequency mask
     mask = np.ones((h, w), np.uint8)
     mask[crow - d : crow + d, ccol - d : ccol + d] = 0
     high_freq_energy = (magnitude * mask).sum()
@@ -26,7 +26,7 @@ def compute_freq_metrics(path, d=30):
     return total_energy, high_freq_ratio
 
 
-# Change d if your images are bigger/smaller.
+# Can change d if your images are bigger/smaller.
 D = 30
 
 for category in ("sharp", "blur"):
