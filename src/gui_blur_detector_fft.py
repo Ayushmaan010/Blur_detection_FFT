@@ -47,7 +47,7 @@ def main_gui_fft():
         print("❌ Failed to load the image. Exiting.")
         sys.exit(1)
 
-    # You can tweak these parameters if your images are much larger/smaller:
+    # Can tweak these parameters if images are much larger/smaller:
     D = 30
     TOTAL_ENERGY_TH = 1e7
     HF_RATIO_TH = 0.04
@@ -60,7 +60,7 @@ def main_gui_fft():
     print(f"  Total Energy       = {tot_e:.2e}  (Threshold: {TOTAL_ENERGY_TH:.2e})")
     print(f"  High‐Freq Ratio    = {hf_ratio:.5f}  (Threshold: {HF_RATIO_TH:.5f})")
 
-    # Display with overlay text
+    # Displaying with overlay text
     display = image.copy()
     color = (0, 0, 255) if is_blur else (0, 255, 0)
     cv2.putText(
