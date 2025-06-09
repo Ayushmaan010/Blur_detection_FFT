@@ -44,13 +44,13 @@ def webcam_blur_detection_fft_temporal():
         if not ret:
             break
 
-        # Compute FFT high-frequency ratio
+        # Computing the FFT high-frequency ratio
         hf_ratio, logE = compute_fft_features(frame, d=30)
 
-        # Compute Laplacian variance
+        # Computing Laplacian variance
         lap_var = compute_laplacian_var(frame)
 
-        # Compute temporal difference if previous frame exists
+        # Computing the temporal difference if previous frame exists
         temporal_blur = False
         if prev_gray is not None:
             curr_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -61,7 +61,7 @@ def webcam_blur_detection_fft_temporal():
         else:
             prev_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        # Combine all three blur indicators
+        # Combining all the three blur indicators
         is_blur = (
             logE < 23.0
             or hf_ratio < hf_ratio_threshold
@@ -69,7 +69,7 @@ def webcam_blur_detection_fft_temporal():
             or temporal_blur
         )
 
-        # Display result
+        # Displaying result
         status = "Blurred" if is_blur else "Not Blurred"
         color = (0, 0, 255) if is_blur else (0, 255, 0)
         overlay_text = f"{status} | R={hf_ratio:.3f} | Lap={lap_var:.1f} | T:{'YES' if temporal_blur else 'NO'}"
