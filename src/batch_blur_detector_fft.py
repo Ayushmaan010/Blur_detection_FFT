@@ -23,7 +23,7 @@ def is_blur_fft(image, d: int = 30) -> tuple[bool, float, float]:
     # Total spectral energy
     total_energy = magnitude.sum()
 
-    # Mask out low frequencies (central (2d × 2d) square)
+    # Masking out low frequencies (central (2d × 2d) square)
     h, w = magnitude.shape
     crow, ccol = h // 2, w // 2
     mask = np.ones((h, w), np.uint8)
@@ -33,7 +33,7 @@ def is_blur_fft(image, d: int = 30) -> tuple[bool, float, float]:
     hf_ratio = high_freq_energy / (total_energy + 1e-8)
     logE = log(total_energy + 1e-8)
 
-    # Tuned thresholds (from your grid-search)
+    # Tuned thresholds (from grid-search)
     if logE < 23.0:  # Uniform / low-detail sharp
         return False, total_energy, hf_ratio
     if hf_ratio < 0.8815:  # Texture present but high-freq suppressed
@@ -72,7 +72,7 @@ def batch_blur_detection_fft(root_images: str) -> None:
 
     print(f"\n📂 Root images folder: {root_images}")
 
-    # Look for sub-folders
+    # Looking for sub-folders
     sharp_dir = os.path.join(root_images, "sharp")
     blur_dir = os.path.join(root_images, "blur")
 
